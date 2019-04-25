@@ -30,15 +30,14 @@ $(document).ready(function () {
             $("#GIFS").append(currGIF);
         }
     }
-    //document listener for toggling gif states, i think this is pretty inelegant
+    //document listener for toggling gif states, i think this is pretty inelegant also it doesn't work on first click due to random media"#" link
     $(document).on("click", ".gifImage", function () {
-        if ($(this).attr("src") === `https://media2.giphy.com/media/${$(this).attr("id")}/200w_s.gif`) {
+        if ($(this).attr("src").search("200w_s") !== -1) {
 
-            $(this).attr("src", `https://media2.giphy.com/media/${$(this).attr("id")}/giphy.gif`)
+            $(this).attr("src", `https://media1.giphy.com/media/${$(this).attr("id")}/giphy.gif`)
         }
         else {
-            $(this).attr("src", `https://media2.giphy.com/media/${$(this).attr("id")}/200w_s.gif`)
-            console.log($(this).attr("src"))
+            $(this).attr("src", `https://media1.giphy.com/media/${$(this).attr("id")}/200w_s.gif`)
         }
     })
 
@@ -59,11 +58,12 @@ $(document).ready(function () {
         method: "GET"
     }).then(function (response) {
         loadGIFS(response);
+        console.log(response)
     })
 
     addGIFButtons()
 
-    //why does $("#add").on("click", addGIFButtons()) not work
+    //why does $("#add").on("click", addGIFButtons) not work
     $("#add").on("click", function () {
         addGIFButtons()
     })
