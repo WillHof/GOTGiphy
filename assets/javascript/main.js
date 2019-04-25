@@ -32,11 +32,9 @@ $(document).ready(function () {
     }
     //document listener for toggling gif states, i think this is pretty inelegant
     $(document).on("click", ".gifImage", function () {
-        console.log(this)
         if ($(this).attr("src") === `https://media2.giphy.com/media/${$(this).attr("id")}/200w_s.gif`) {
 
-            $(this).attr("src", `https://media2.giphy.com/media/${$(this).attr("id")}/200w.gif`)
-            console.log($(this).attr("src"))
+            $(this).attr("src", `https://media2.giphy.com/media/${$(this).attr("id")}/giphy.gif`)
         }
         else {
             $(this).attr("src", `https://media2.giphy.com/media/${$(this).attr("id")}/200w_s.gif`)
