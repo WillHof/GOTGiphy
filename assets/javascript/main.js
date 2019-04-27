@@ -4,8 +4,8 @@ $(document).ready(function () {
     var gifLoad = "Cersei"
     var apiKey = "HC1P3s78INLVXHZtQxncPG0wuoH7zkCJ"
     var queryURL = `https://api.giphy.com/v1/gifs/search?q=${gifLoad}&api_key=${apiKey}&limit=15`
-
-    //function to add the gif buttons from the array, if the entry form is empty then itll repopulate with the current array, else it will push the value into the array
+    // var idURL = `https://api.giphy.com/v1/randomid/api_key=${apiKey}`
+    //add the gif buttons from 'arr', if the entry form is empty then itll repopulate with 'arr', else it will push the value into the array
     function addGIFButtons() {
         $("#buttons").empty();
         if ($("#inputGIF").val() === "") {
@@ -30,7 +30,8 @@ $(document).ready(function () {
             $("#GIFS").append(currGIF);
         }
     }
-    //document listener for toggling gif states, i think this is pretty inelegant also it doesn't work on first click due to random media"#" link
+
+    //document listener for toggling gif states
     $(document).on("click", ".gifImage", function () {
         if ($(this).attr("src").search("200w_s") !== -1) {
 
@@ -41,7 +42,7 @@ $(document).ready(function () {
         }
     })
 
-    //load stills of new button when button is clicked
+    //loads gif stills of button when button is clicked
     $(document).on("click", ".btn-success", function () {
         gifLoad = $(this).val()
         queryURL = `https://api.giphy.com/v1/gifs/search?q=${gifLoad}&api_key=${apiKey}&limit=15`
@@ -58,14 +59,11 @@ $(document).ready(function () {
         method: "GET"
     }).then(function (response) {
         loadGIFS(response);
-        console.log(response)
     })
 
     addGIFButtons()
 
-    //why does $("#add").on("click", addGIFButtons) not work
-    $("#add").on("click", function () {
-        addGIFButtons()
-    })
+    //adds a new gif button when the add button is clicked
+    $("#add").on("click", addGIFButtons)
 
 });
